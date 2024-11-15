@@ -54,12 +54,6 @@ if (isset($_GET['edit'])) {
             <th>Descrição</th>
             <th>Marca</th>
             <th>Modelo</th>
-        </tr>
-        <th>Nome</th>
-            <th>Valor</th>
-            <th>Categoria</th>
-            <th>Ativo</th>
-            <th>Ações</th>
         <!--Faz um loop FOR no resultset de usuários e preenche a tabela-->
         <?php foreach ($users as $user): ?>
             <tr>
@@ -68,9 +62,15 @@ if (isset($_GET['edit'])) {
                 <td><?php echo $user['descricao'] ?? ''; ?></td>
                 <td><?php echo $user['marca'] ?? ''; ?></td>
                 <td><?php echo $user['modelo'] ?? ''; ?></td>
-                <td><?php echo $user['valorunitario'] ?? ''; ?>" required></td>
-                <td><?php echo $user['categoria'] ?? ''; ?>" required></td>
-                <td>:<?php echo $user['ativo'] ?? ''; ?>" required></td>
+                <tr>
+            <th>Valor</th>
+            <th>Categoria</th>
+            <th>Ativo</th>
+            <th>Ações</th>
+            <tr>
+                <td><?php echo $user['valorunitario'] ?? ''; ?></td>
+                <td><?php echo $user['categoria'] ?? ''; ?></td>
+                <td>:<?php echo $user['ativo'] ?? ''; ?></td>
 
                 <td>
                     <a href="?edit=<?php echo $user['id']; ?>">Editar</a>

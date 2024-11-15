@@ -4,7 +4,7 @@ include 'db.php';
 function saveUser($nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $ativo) {
     global $conn;
     $stmt = $conn->prepare("INSERT INTO produtos (nome, descricao, marca, modelo, valorunitario, categoria, ativo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $ativo);
+    $stmt->bind_param("ssssdss", $nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $ativo);
     return $stmt->execute();
 }
 
