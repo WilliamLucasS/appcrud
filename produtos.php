@@ -42,9 +42,9 @@ if (isset($_GET['edit'])) {
         <label for="ativo">Ativo:</label>
         <input type="text" id="ativo" name="ativo" value="<?php echo $userToEdit['ativo'] ?? ''; ?>" required><br><br>
 
-        <button type="submit" name="save">Salvar</button>
-        <button type="submit" name="update">Atualizar</button>
-        <button type="button" onclick="clearForm()">Novo</button>
+        <button type="submit" name="save" class="btn btn-primary my-2">Salvar</button>
+        <button type="submit" name="update" class="btn btn-success my-2">Atualizar</button>
+        <button type="button" onclick="clearForm()" class="btn btn-warning my-2">Novo</button>
     </form>
     <h2>Produtos Cadastrados</h2>
     <table border="1">
@@ -73,8 +73,8 @@ if (isset($_GET['edit'])) {
                 <td>:<?php echo $user['ativo'] ?? ''; ?></td>
 
                 <td>
-                    <a href="?edit=<?php echo $user['id']; ?>">Editar</a>
-                    <a href="?delete=<?php echo $user['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+                <a href="?edit=<?php echo $user['id']; ?>" class="btn btn-primary my-2">Editar</a>
+                <a href="?delete=<?php echo $user['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir?');" class="btn btn-danger my-2">Excluir</a>
                 </td>
             </tr>
         <?php endforeach; ?>
