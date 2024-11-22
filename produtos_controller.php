@@ -1,20 +1,20 @@
 <?php
 include 'db.php';
 
-function saveUser($nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $ativo) {
+function saveProdutos($nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $url_img, $ativo) {
     global $conn;
-    $stmt = $conn->prepare("INSERT INTO produtos (nome, descricao, marca, modelo, valorunitario, categoria, ativo) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssdss", $nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $ativo);
+    $stmt = $conn->prepare("INSERT INTO produtos (nome, descricao, marca, modelo, valorunitario, categoria, url_img, ativo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssdssi", $nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $url_img, $ativo);
     return $stmt->execute();
 }
 
-function getUsers() {
+function getProdutos() {
     global $conn;
     $result = $conn->query("SELECT * FROM produtos");
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
-function getUser($id) {
+function getProduto($id) {
     global $conn;
     $stmt = $conn->prepare("SELECT * FROM produtos WHERE id = ?");
     $stmt->bind_param("i", $id);
@@ -22,14 +22,14 @@ function getUser($id) {
     return $stmt->get_result()->fetch_assoc();
 }
 
-function updateUser($id, $nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $ativo) {
+function updateProdutos($id, $nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $url_img, $ativo) {
     global $conn;
-    $stmt = $conn->prepare("UPDATE produtos SET nome = ?, descricao = ?, marca = ?, modelo = ?, valorunitario = ?, categoria = ?, ativo = ? WHERE id = ?");
-    $stmt->bind_param("ssssi", $nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $ativo, $id);
+    $stmt = $conn->prepare("UPDATE produtos SET nome = ?, descricao = ?, marca = ?, modelo = ?, valorunitario = ?, categoria = ?, url_img = ?, ativo = ? WHERE id = ?");
+    $stmt->bind_param("ssssdssii", $nome, $descricao, $marca, $modelo, $valorunitario, $categoria, $url_img, $ativo, $id);
     return $stmt->execute();
 }
 
-function deleteUser($id) {
+function deleteProdutos($id) {
     global $conn;
     $stmt = $conn->prepare("DELETE FROM produtos WHERE id = ?");
     $stmt->bind_param("i", $id);
@@ -39,14 +39,16 @@ function deleteUser($id) {
 // Processamento do formulário
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['save'])) {
-        saveUser($_POST['nome'], $_POST['descricao'], $_POST['marca'], $_POST['modelo'], $_POST['valorunitario'], $_POST['categoria'], $_POST['ativo']);
+        $ativo = isset($_POST['ativo']) ? 1 : 0;
+        saveProdutos($_POST['nome'], $_POST['descricao'], $_POST['marca'], $_POST['modelo'], $_POST['valorunitario'], $_POST['categoria'], $_POST['url_img'], $ativo);
     } elseif (isset($_POST['update'])) {
-        updateUser($_POST['id'], $_POST['nome'], $_POST['descricao'], $_POST['marca'], $_POST['modelo'], $_POST['valorunitario'], $_POST['categoria'], $_POST['ativo']);
+        $ativo = isset($_POST['ativo']) ? 1 : 0;
+        updateProdutos($_POST['id'], $_POST['nome'], $_POST['descricao'], $_POST['marca'], $_POST['modelo'], $_POST['valorunitario'], $_POST['categoria'], $_POST['url_img'], $ativo);
     }
 }
 
 // Processamento da exclusão
 if (isset($_GET['delete'])) {
-    deleteUser($_GET['delete']);
+    deleteProdutos($_GET['delete']);
 }
 ?>
