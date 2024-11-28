@@ -34,7 +34,7 @@ if (isset($_GET['edit'])) {
         <input type="text" id="modelo" name="modelo" value="<?php echo $produtoToEdit['modelo'] ?? ''; ?>" required><br><br>
 
         <label for="valorunitario">Valor:</label>
-        <input type="number" id="valorunitario" name="valorunitario" value="<?php echo $produtoToEdit['valorunitario'] ?? ''; ?>" required><br><br>
+        <input type="number" step="0.01" id="valorunitario" name="valorunitario" value="<?php echo $produtoToEdit['valorunitario'] ?? ''; ?>" required><br><br>
 
         <label for="categoria">Categoria:</label>
         <input type="text" id="categoria" name="categoria" value="<?php echo $produtoToEdit['categoria'] ?? ''; ?>" required><br><br>
