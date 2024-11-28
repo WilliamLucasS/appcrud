@@ -47,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+
 // Processamento da exclusão
 if (isset($_GET['delete'])) {
     deleteProdutos($_GET['delete']);

@@ -10,7 +10,7 @@ $produtoToEdit = null;
 // Verifica se existe o parâmetro edit pelo método GET
 // e sé há um ID para edição de usuário
 if (isset($_GET['edit'])) {
-    $produtoToEdit = getProdutos($_GET['edit']);
+    $produtoToEdit = getProduto($_GET['edit']);
 }
 ?>
 <?php include 'header.php'; ?>
@@ -34,7 +34,7 @@ if (isset($_GET['edit'])) {
         <input type="text" id="modelo" name="modelo" value="<?php echo $produtoToEdit['modelo'] ?? ''; ?>" required><br><br>
 
         <label for="valorunitario">Valor:</label>
-        <input type="numeric" id="valorunitario" name="valorunitario" value="<?php echo $produtoToEdit['valorunitario'] ?? ''; ?>" required><br><br>
+        <input type="number" id="valorunitario" name="valorunitario" value="<?php echo $produtoToEdit['valorunitario'] ?? ''; ?>" required><br><br>
 
         <label for="categoria">Categoria:</label>
         <input type="text" id="categoria" name="categoria" value="<?php echo $produtoToEdit['categoria'] ?? ''; ?>" required><br><br>

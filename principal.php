@@ -1,4 +1,4 @@
-<?php include 'principal_controller.php'; ?>
+<?php include 'principal_controller.php';
 
 $produtos = getProdutos();
 ?>
@@ -20,8 +20,8 @@ $produtos = getProdutos();
             <div class="card-body">
                 <h5 class="card-title"><?php echo $produto['nome']; ?></h5>
                 <p class="card-text"><?php echo $produto['descricao']; ?></p>
-                <p><strong>PreÃ§o:</strong> R$ <?php echo number_format($produto['valorunitario'], 2, ',', '.'); ?></p>
-                <!-- FormulÃ¡rio para adicionar ao carrinho -->
+                <p><strong>Preço:</strong> R$ <?php echo number_format($produto['valorunitario'], 2, ',', '.'); ?></p>
+                <!-- Formulário para adicionar ao carrinho -->
                 <form method="POST" action="principal.php">
                     <input type="hidden" name="id_produto" value="<?php echo $produto['id']; ?>">
                     <button type="submit" name="adicionar_produto" class="btn btn-primary btn-block">Comprar</button>

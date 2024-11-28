@@ -1,5 +1,5 @@
 <?php
-//Prepara pa gerenciar a sessão
+include 'db.php';
 session_start();
 
 // Verifica se o usuário está registrado na sessão (logado)
