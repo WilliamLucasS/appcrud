@@ -18,7 +18,7 @@ function salvarPedido($carrinho, $total) {
     global $conn;
     
     // Pega o ID do usuÃ¡rio que estÃ¡ na sessÃ£o
-    $id_usuario = null;  // Pegando o ID do usuÃ¡rio que estÃ¡ na sessÃ£o
+    $id_usuario = $_SESSION['id'];  // Pegando o ID do usuÃ¡rio que estÃ¡ na sessÃ£o
     $data_pedido = date('Y-m-d H:i:s');
 
     // Tenta inserir o pedido no banco
